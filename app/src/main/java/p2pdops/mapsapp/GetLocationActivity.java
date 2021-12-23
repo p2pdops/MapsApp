@@ -20,7 +20,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class GetLocationActivity extends AppCompatActivity implements LocationListener, OnMapReadyCallback {
+public class GetLocationActivity extends AppCompatActivity implements LocationListener {
 
     LocationManager locationManager;
 
@@ -38,12 +38,6 @@ public class GetLocationActivity extends AppCompatActivity implements LocationLi
         latitudeTv = findViewById(R.id.latitudeTv);
         longitudeTv = findViewById(R.id.longitudeTv);
 
-        SupportMapFragment mapView = (SupportMapFragment)
-                getSupportFragmentManager().findFragmentById(R.id.mapView);
-        assert mapView != null;
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "No permission", Toast.LENGTH_LONG).show();
             return;
@@ -54,21 +48,12 @@ public class GetLocationActivity extends AppCompatActivity implements LocationLi
                 1000,
                 this
         );
-
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
         latitudeTv.setText("Latitude: " + location.getLatitude());
         longitudeTv.setText("Longitude: " + location.getLongitude());
-
-        // add marker to new location
-        if (mMap != null) {
-            LatLng newLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(newLatLng).title("New Marker"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newLatLng, 14f));
-        }
-
     }
 
     @Override
@@ -80,16 +65,4 @@ public class GetLocationActivity extends AppCompatActivity implements LocationLi
     public void onProviderDisabled(@NonNull String provider) {
         Toast.makeText(this, provider + " is disabled", Toast.LENGTH_LONG).show();
     }
-
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        mMap = googleMap;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "No permission", Toast.LENGTH_LONG).show();
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
-        mMap = googleMap;
-    }
-
 }

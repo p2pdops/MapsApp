@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="64dp"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/mapView"
-        class="com.google.android.gms.maps.SupportMapFragment"
+    <Button
+        android:id="@+id/simple_maps"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:onClick="action"
+        android:text="Simple maps demo" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/get_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="action"
+        android:text="Get location demo" />
+
+    <Button
+        android:id="@+id/show_my_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="action"
+        android:text="Show My location demo" />
+
+    <Button
+        android:id="@+id/show_custom_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="action"
+        android:text="Show custom location demo" />
+
+</LinearLayout>

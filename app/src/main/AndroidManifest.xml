@@ -14,7 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MapsApp">
         <activity
-            android:name=".DisplayMapActivity"
+            android:name=".GetLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowCustomLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowMyLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SimpleMapActivity"
             android:exported="false" />
 
         <meta-data
